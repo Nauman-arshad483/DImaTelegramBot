@@ -23,8 +23,9 @@ bot.on("text", (ctx) => {
   message = ctx.update.message.text;
   ctx
     .reply(
+      "choose",
       bot.telegram
-        .sendMessage(5087892557, "choose option to send text", mainMenu)
+        .sendMessage(5087892557, "option to send text", mainMenu)
         .then((res) => {
           bot.action(responceList, async (ctx) => {
             let res = ctx.match.input;
@@ -35,7 +36,7 @@ bot.on("text", (ctx) => {
             });
             if (res === "select") {
               data.map(async (item) => {
-                console.log(item.TGID);
+                // console.log(item.TGID);
                 bot.telegram
                   .sendMessage(item.TGID, message)
                   .then(() => {
@@ -127,7 +128,8 @@ bot.on("text", (ctx) => {
     .then(() => {
       console.log("choose option");
     })
-    .catch(() => {
+    .catch((error) => {
+      console.log(error);
       console.log("option error");
     });
 });
